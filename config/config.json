@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "1234",
+    "database": "todolist-cicd",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "1234",
+    "database": "todolist-cicd-test",
+    "host": "pgsqlapi",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "1234",
+    "database": "todolist-cicd_production",
+    "host": "pgsqlapi",
+    "dialect": "postgres"
+  }
+}

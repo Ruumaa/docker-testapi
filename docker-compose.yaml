@@ -1,0 +1,36 @@
+version: '3'
+
+# konfigurasi network yg digunakan
+networks: 
+  app-tier:
+    # jenis driver bridge digunakan untuk memberi akses
+    driver: bridge
+
+# set pada service yg digunakan(database, env varianle)
+services:
+  todo-with-docker:
+  # membuat file yg sudah dibuat menjadi satu dan diupload di docker
+    build: .
+    networks:
+      - app-tier
+    ports:
+      - "8010:8010"
+    depends_on:
+      - pgsqlapi
+    volumes:
+      - ".:/app"
+  # sebagai service atau host untuk docker container
+  pgsqlapi:
+    image: postgres:15
+    # port diservice dan didocker
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+      # membaca dari .env
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    networks:
+      - app-tier
